@@ -30,17 +30,17 @@ public class ComidaAnimales : MonoBehaviour
             return;
         }
 
-        if (categoriaAnimal = codigoGato){
+        if (categoriaAnimal == codigoGato){
             cantidadTotalAlimento = cantidadTotalAlimento + gramosGato * diasAnimal;
         } 
-        if (categoriaAnimal = codigoPerroGrande){
+        if (categoriaAnimal == codigoPerroGrande){
             cantidadTotalAlimento = cantidadTotalAlimento + gramosPerroGrande * diasAnimal;
         }
-        if (categoriaAnimal = codigoPerroPeque){
+        if (categoriaAnimal == codigoPerroPeque){
             cantidadTotalAlimento = cantidadTotalAlimento + gramosPerroPeque * diasAnimal;
         }
 
-        Debug.Log("Para ese período se necesitan  " + cantidadTotalAlimento + " gramos de alimento");
+        Debug.Log("Para ese período se necesitan " + cantidadTotalAlimento + " gramos de alimento");
         
         precioAlimento = precioAlimento + cantidadTotalAlimento * 80;
         Debug.Log("El costo de la cantidad de alimento calculado es de $" + precioAlimento);
