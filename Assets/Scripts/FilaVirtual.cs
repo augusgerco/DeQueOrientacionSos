@@ -20,47 +20,60 @@ public class FilaVirtual : MonoBehaviour
     int precioNormal = 1200;
     int precioPremium = 2000;
 
+    float valorTotalCompra = 0;
+
     // Start is called before the first frame update
     void Start()
     {
         //que entrada elegiste
-        if(tipoDeEntrada != entradaBasica || tipoDeEntrada != entradaNormal || tipoDeEntrada != entradaPremium){
+        if(tipoDeEntrada != entradaBasica && tipoDeEntrada != entradaNormal && tipoDeEntrada != entradaPremium){
             Debug.Log("El codigo de entrada es incorrecto");
             return;
         }
-        //vemos cuantas entradas quiere
-        if(tipoDeEntrada == entradaBasica){
-            cantidadBasica = cantidadBasica + cantidadDeEntradas;
-        }
-        //vemos cuantas entradas quiere
-        if(tipoDeEntrada == entradaNormal){
-            cantidadNormal = cantidadNormal + cantidadDeEntradas;
-        }
-        //vemos cuantas entradas quiere
-        if(tipoDeEntrada == entradaPremium){
-            cantidadPremium = cantidadPremium + cantidadDeEntradas;
+        // Vemos cuántas entradas quiere y validamos
+        if (tipoDeEntrada == entradaBasica) {
+            cantidadBasica = cantidadDeEntradas;
+
+            if (cantidadBasica > 4 || cantidadBasica <= 0) {
+                Debug.Log("Error. El máximo de entradas básicas adquiribles es de 4 y el mínimo de compra es una");
+                return;
+            } else {
+                valorTotalCompra = cantidadBasica * precioBasica;
+            }
         }
 
-        //vemos si la cantidad de entradas es valida
-        if(cantidadBasica >= 4 && cantidadBasica < 0){
-            Debug.Log("Error. El maximo de entradas normales adquiribles es de 6 y el minimo de compra es una");
-            return;
+        if (tipoDeEntrada == entradaNormal) {
+            cantidadNormal = cantidadDeEntradas;
+
+            if (cantidadNormal > 6 || cantidadNormal <= 0) {
+                Debug.Log("Error. El máximo de entradas normales adquiribles es de 6 y el mínimo de compra es una");
+                return;
+            } else {
+                valorTotalCompra = cantidadNormal * precioNormal;
+            }
         }
-        if(cantidadNormal >= 6 && cantidadNormal < 0){
-            Debug.Log("Error. El maximo de entradas normales adquiribles es de 6 y el minimo de compra es una");
-            return;
+
+        if (tipoDeEntrada == entradaPremium) {
+            cantidadPremium = cantidadDeEntradas;
+
+            if (cantidadPremium <= 0) {
+                Debug.Log("Error. Debes adquirir al menos una entrada premium");
+                return;
+            } else {
+                valorTotalCompra = cantidadPremium * precioPremium;
+            }
         }
-        if(cantidadPremium < 0){
-            Debug.Log("Error. Debes adquirir al menos una entrada");
-            return;
-        }
-        //checkeamos si el usuario uso premium o no
-        if(tipoDeEntrada != entradaPremium && prioridadEnFila = true){
+
+        // Checkeamos si el usuario usó prioridad correctamente
+        if (tipoDeEntrada != entradaPremium && prioridadEnFila == true) {
             Debug.Log("Error. La prioridad en fila es solo para entradas premium");
             return;
+        } else if (tipoDeEntrada == entradaPremium && prioridadEnFila == true) {
+            // Solo sumamos el 15% extra sobre el valor de las entradas premium
+            valorTotalCompra += cantidadPremium * precioPremium * 0.15f;
         }
-
-
+        Debug.Log("El tipo de entrada elegido es: " + tipoDeEntrada + ", la cantidad es de " + cantidadDeEntradas + " entradas, y el total de la compra es de $" + valorTotalCompra);
+        
     }
 
     // Update is called once per frame
