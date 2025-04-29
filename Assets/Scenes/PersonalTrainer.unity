@@ -223,6 +223,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 801b297e5698bfe47a2fbe8d477deff6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tipoEntrenamiento: C
+  cantidadHorasSemanales: 6
 --- !u!4 &987860439
 Transform:
   m_ObjectHideFlags: 0
