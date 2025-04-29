@@ -16,11 +16,11 @@ public class FlotaDeTaxis : MonoBehaviour
     void Start()
     {
         if(cantidadDiasTrabajados < 5){
-            Debug.Log("Error. Hay un minimo de 5 dias de trabajo");
+            Debug.LogError("Error. Hay un minimo de 5 dias de trabajo");
             return;
         }
         if(cantidadDeTaxis < 1){
-            Debug.Log("Error. Hay un minimo de 1 taxi por flota");
+            Debug.LogError("Error. Hay un minimo de 1 taxi por flota");
             return;
         }
 
